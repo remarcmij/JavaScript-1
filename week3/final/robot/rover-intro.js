@@ -3,7 +3,7 @@ const state = {
     ['T', 'T', '.', 'F'],
     ['T', '.', '.', '.'],
     ['.', '.', '.', '.'],
-    ['.', '.', '.', 'W']
+    ['R', '.', '.', 'W']
   ],
   robot: {
     x: 0,
@@ -12,6 +12,13 @@ const state = {
   },
   flagReached: false,
   moves: 0
+};
+
+const trailIndicators = {
+  left: '←',
+  right: '→',
+  up: '↑',
+  down: '↓'
 };
 
 function renderGame() {
@@ -25,7 +32,7 @@ function renderGame() {
     console.log(line);
   }
   if (state.flagReached) {
-    console.log('\nHurray! Flag reached!');
+    console.log('\nHurray! Flag reached in ' + state.moves + ' steps!');
   }
 }
 
@@ -53,15 +60,7 @@ function move() {
   const cellContents = state.board[y][x];
 
   if (cellContents === '.' || cellContents === 'F') {
-    let trailIndicator;
-    if (state.robot.dir === 'left') {
-      trailIndicator = '<';
-    } else if (state.robot.dir === 'right') {
-      trailIndicator = '>';
-    } else {
-      trailIndicator = '|';
-    }
-    state.board[state.robot.y][state.robot.x] = trailIndicator;
+    state.board[state.robot.y][state.robot.x] = trailIndicators[state.robot.dir];
     state.robot.x = x;
     state.robot.y = y;
     state.board[y][x] = 'R';
@@ -93,8 +92,6 @@ function turn(turnDirection) {
     case 'right':
       state.robot.dir = turnDirection === 'left' ? 'up' : 'down';
       break;
-    default:
-      console.log('error: invalid direction:', state.robot.dir);
   }
 }
 
