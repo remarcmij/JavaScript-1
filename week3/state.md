@@ -33,6 +33,6 @@ Executing a program cause its **state** to **change over time**. (A program that
 
 A programming mistake can cause the state to be changed unexpectedly and, most probably, also incorrectly. Such a mistake is called a **bug**.
 
-By minimising the number of variables that allow their values to be changed (and thus change overall state) we can reduce the changes of introducing unintended state changes. That's why in JavaScript we recommend that you use `const` in preference over `let` whenever a variable is not supposed to change after you have set its one and only value.
+By minimising the number of variables that allow their values to be changed (and thus change overall state) we can reduce the chance of introducing unintended state changes. That's why in JavaScript we recommend that you use `const` in preference over `let` whenever a variable is not supposed to change after you have set its one and only value.
 
 Note that this gives limited protection only, as you can still modify objects or arrays that a `const` variable refers to. But it is still better than just using `let` (not to mention `var`).

@@ -28,3 +28,30 @@
 ## JavaScript in the BROWSER with HTML and CSS
 
 - Progressively build the rover introduction level from ASCII art to SPA using live coding (see final folder)
+
+### robot-ascii
+
+- Discuss what the state of the game comprises
+- Create a `render()` function that renders the current state as ASCII art.
+- Add the `move()` and `turn()` functions. No need for student to understand all the fine details.
+Just that these functions change the state.
+
+### robot-web-1
+
+- Show hard coded rendering of game board in HTML. This is what we need to reproduce programmatically.
+
+### robot-web-2
+
+- Create the `render()` function to reproduce the game board initial state programmatically.
+
+### robot-web-3
+
+- Copy the `move()` and `turn()` functions from `robot-ascii` and use the new `render()` function to render the game steps (will only show the final state)
+
+### robot-web-4
+
+- Add an input text field and button to accept robot commands.
+
+### robot-web-5
+
+- Use images to render the robot, trees, water and flag. Use CSS classes to rotate the robot.
