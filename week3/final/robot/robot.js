@@ -21,13 +21,13 @@ const trailIndicators = {
   down: '↓'
 };
 
-function renderGame() {
+function render() {
   console.log('\n ' + state.moves + ':');
-  for (let rowIndex = state.board.length - 1; rowIndex >= 0; rowIndex--) {
-    const row = state.board[rowIndex];
+  for (let row = state.board.length - 1; row >= 0; row--) {
+    const cells = state.board[row];
     let line = '';
-    for (let colIndex = 0; colIndex < row.length; colIndex++) {
-      line += ' ' + row[colIndex] + ' ';
+    for (let col = 0; col < cells.length; col++) {
+      line += ' ' + cells[col] + ' ';
     }
     console.log(line);
   }
@@ -53,8 +53,6 @@ function move() {
     case 'right':
       x = x < state.board[0].length - 1 ? x + 1 : x;
       break;
-    default:
-      console.log('error: invalid direction:', state.robot.dir);
   }
 
   const cellContents = state.board[y][x];
@@ -67,12 +65,10 @@ function move() {
     if (cellContents === 'F') {
       state.flagReached = true;
     }
-  } else {
-    console.log('\nbumped into:', cellContents);
   }
 
   state.moves += 1;
-  renderGame();
+  render();
 }
 
 function turn(turnDirection) {
@@ -96,7 +92,7 @@ function turn(turnDirection) {
 }
 
 state.board.reverse();
-renderGame();
+render();
 
 move();
 turn('right');
