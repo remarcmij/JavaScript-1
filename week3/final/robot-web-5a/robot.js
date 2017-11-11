@@ -162,12 +162,10 @@
     'move'
   ];
 
-  let index = 0;
   const intervalID = setInterval(function () {
-    state.lastCommand = commands[index];
+    state.lastCommand = commands.shift();
     executeCommand();
-    index += 1;
-    if (index >= commands.length) {
+    if (commands.length === 0) {
       clearInterval(intervalID);
     }
   }, 1000);

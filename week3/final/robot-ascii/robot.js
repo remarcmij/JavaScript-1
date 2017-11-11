@@ -14,6 +14,8 @@ const state = {
   moves: 0
 };
 
+state.board.reverse();
+
 const trailIndicators = {
   left: '←',
   right: '→',
@@ -91,7 +93,6 @@ function turn(turnDirection) {
   }
 }
 
-state.board.reverse();
 render();
 
 move();

@@ -15,10 +15,10 @@
     moves: 0
   };
 
+  state.board.reverse();
+
   function render() {
   }
-
-  state.board.reverse();
 
   render();
 })();

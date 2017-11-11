@@ -5,8 +5,6 @@
 ## Homework
 
 - Correct and refactor the week 1 homework of one student
-- Make sure everyone has VSCode correctly set up and configured
-- Add `"editor.formatOnType": true,` to VSCode user settings
 
 ## Scope
 
@@ -33,6 +31,8 @@
 
 ### robot-ascii
 
+- Make sure everyone has VSCode correctly set up and configured
+- Add `"editor.formatOnType": true,` to VSCode user settings
 - Start a new project folder from scratch. Call it `robot`.
 - Discuss what the state of the game comprises
 - Create the `state` object
