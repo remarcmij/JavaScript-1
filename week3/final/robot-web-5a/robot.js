@@ -12,14 +12,15 @@
       dir: 'up',
     },
     flagReached: false,
-    moves: 0
+    moves: 0,
+    lastCommand: ''
   };
 
-  const trailIndicators = {
-    left: '←',
-    right: '→',
-    up: '↑',
-    down: '↓'
+  const imageMap = {
+    T: '<img src="img/tree.png"',
+    W: '<img src="img/water.png"',
+    F: '<img src="img/goal.png"',
+    R: '<img src="img/robot.png"'
   };
 
   function render() {
@@ -37,13 +38,16 @@
     div.appendChild(input);
     input.setAttribute('id', 'command');
     input.setAttribute('type', 'text');
+    input.setAttribute('value', state.lastCommand);
+    input.focus();
 
     const button = document.createElement('button');
     div.appendChild(button);
     const label = document.createTextNode('Execute');
     button.appendChild(label);
     button.addEventListener('click', function () {
-      executeCommand(input.value);
+      state.lastCommand = input.value;
+      executeCommand();
     });
   }
 
@@ -56,15 +60,24 @@
       table.appendChild(tr);
       let rowHtml = '';
       for (let col = 0; col < cells.length; col++) {
-        const cell = cells[col] === '.' ? '' : cells[col];
-        rowHtml += `<td>${cell}</td>`;
+        const cell = cells[col];
+        const img = imageMap[cell] || '';
+        if (cell === 'R') {
+          let classString = state.robot.dir;
+          if (state.flagReached) {
+            classString += ' at-flag';
+          }
+          rowHtml += `<td class="${classString}">${img}</td>`;
+        } else {
+          rowHtml += `<td>${img}</td>`;
+        }
       }
       tr.innerHTML = rowHtml;
     }
   }
 
-  function executeCommand(command) {
-    switch (command) {
+  function executeCommand() {
+    switch (state.lastCommand) {
       case 'move':
         move();
         break;
@@ -75,7 +88,7 @@
         turn('right');
         break;
       default:
-        console.log('ignoring command:', command);
+        console.log('ignoring command:', state.lastCommand);
     }
     render();
   }
@@ -102,7 +115,7 @@
     const cellContents = state.board[y][x];
 
     if (cellContents === '.' || cellContents === 'F') {
-      state.board[state.robot.y][state.robot.x] = trailIndicators[state.robot.dir];
+      state.board[state.robot.y][state.robot.x] = '';
       state.robot.x = x;
       state.robot.y = y;
       state.board[y][x] = 'R';
@@ -137,4 +150,25 @@
 
   state.board.reverse();
   render();
+
+  const commands = [
+    'move',
+    'turn-right',
+    'move',
+    'move',
+    'move',
+    'turn-left',
+    'move',
+    'move'
+  ];
+
+  let index = 0;
+  const intervalID = setInterval(function () {
+    state.lastCommand = commands[index];
+    executeCommand();
+    index += 1;
+    if (index >= commands.length) {
+      clearInterval(intervalID);
+    }
+  }, 1000);
 })();

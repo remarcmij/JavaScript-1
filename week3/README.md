@@ -5,6 +5,7 @@
 ## Homework
 
 - Correct and refactor the week 1 homework of one student
+- Add autoformat on save to VSCode settings
 
 ## Scope
 
@@ -32,6 +33,7 @@
 ### robot-ascii
 
 - Discuss what the state of the game comprises
+- Create the `state` object
 - Create a `render()` function that renders the current state as ASCII art.
 - Add the `move()` and `turn()` functions. No need for student to understand all the fine details.
 Just that these functions change the state.
@@ -42,7 +44,8 @@ Just that these functions change the state.
 
 ### robot-web-2
 
-- Create the `render()` function to reproduce the game board initial state programmatically.
+- Create the `render()` function to reproduce the game board initial state programmatically (without clearing `innerHTML`).
+- Show effect of re-rendering. Demonstrate that you must clear `innerHTML` before re-rendering.
 
 ### robot-web-3
 
@@ -55,3 +58,7 @@ Just that these functions change the state.
 ### robot-web-5
 
 - Use images to render the robot, trees, water and flag. Use CSS classes to rotate the robot.
+
+### robot-web-5a
+
+- Show automatic moves using `setInterval`. Leave it as a research project for interested students.

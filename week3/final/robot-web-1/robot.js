@@ -1,22 +1,24 @@
-const state = {
-  board: [
-    ['T', 'T', '.', 'F'],
-    ['T', '.', '.', '.'],
-    ['.', '.', '.', '.'],
-    ['R', '.', '.', 'W']
-  ],
-  robot: {
-    x: 0,
-    y: 0,
-    dir: 'up',
-  },
-  flagReached: false,
-  moves: 0
-};
+(function() {
+  const state = {
+    board: [
+      ['T', 'T', '.', 'F'],
+      ['T', '.', '.', '.'],
+      ['.', '.', '.', '.'],
+      ['R', '.', '.', 'W']
+    ],
+    robot: {
+      x: 0,
+      y: 0,
+      dir: 'up',
+    },
+    flagReached: false,
+    moves: 0
+  };
 
-function render() {
-}
+  function render() {
+  }
 
-state.board.reverse();
+  state.board.reverse();
 
-render();
+  render();
+})();

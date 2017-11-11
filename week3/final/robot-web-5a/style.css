@@ -1,0 +1,27 @@
+td {
+  border: 1px solid black;
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+td.up {
+  transform: rotate(0);
+}
+
+td.down {
+  transform: rotate(180deg);
+}
+
+td.left {
+  transform: rotate(-90deg);
+}
+
+td.right {
+  transform: rotate(90deg);
+}
+
+td.at-flag {
+  background-color: green;
+}
