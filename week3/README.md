@@ -5,7 +5,8 @@
 ## Homework
 
 - Correct and refactor the week 1 homework of one student
-- Add autoformat on save to VSCode settings
+- Make sure everyone has VSCode correctly set up and configured
+- Add `"editor.formatOnType": true,` to VSCode user settings
 
 ## Scope
 
@@ -32,6 +33,7 @@
 
 ### robot-ascii
 
+- Start a new project folder from scratch. Call it `robot`.
 - Discuss what the state of the game comprises
 - Create the `state` object
 - Create a `render()` function that renders the current state as ASCII art.
