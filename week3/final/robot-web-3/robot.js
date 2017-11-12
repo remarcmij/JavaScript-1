@@ -80,6 +80,7 @@
   function turn(turnDirection) {
     if (turnDirection !== 'left' && turnDirection !== 'right') {
       console.log('ignoring invalid turn', turnDirection);
+      return;
     }
     switch (state.robot.dir) {
       case 'up':
