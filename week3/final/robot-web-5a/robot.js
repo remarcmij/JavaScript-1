@@ -16,6 +16,8 @@
     lastCommand: ''
   };
 
+  state.board.reverse();
+
   const imageMap = {
     T: '<img src="img/tree.png"',
     W: '<img src="img/water.png"',
@@ -148,8 +150,16 @@
     }
   }
 
-  state.board.reverse();
-  render();
+  function autoPlay(commands, delay = 1000) {
+    const commandQueue = [...commands];
+    const intervalID = setInterval(function () {
+      state.lastCommand = commandQueue.shift();
+      executeCommand();
+      if (commandQueue.length === 0) {
+        clearInterval(intervalID);
+      }
+    }, delay);
+  }
 
   const commands = [
     'move',
@@ -162,11 +172,6 @@
     'move'
   ];
 
-  const intervalID = setInterval(function () {
-    state.lastCommand = commands.shift();
-    executeCommand();
-    if (commands.length === 0) {
-      clearInterval(intervalID);
-    }
-  }, 1000);
+  render();
+  autoPlay(commands);
 })();
