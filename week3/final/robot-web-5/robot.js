@@ -72,6 +72,7 @@
           rowHtml += `<td>${img}</td>`;
         }
       }
+      console.log(rowHtml);
       tr.innerHTML = rowHtml;
     }
   }
