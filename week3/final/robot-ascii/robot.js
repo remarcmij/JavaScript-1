@@ -53,7 +53,7 @@ function move() {
       x = x > 0 ? x - 1 : x;
       break;
     case 'right':
-      x = x < state.board[0].length - 1 ? x + 1 : x;
+      x = x < state.board[y].length - 1 ? x + 1 : x;
       break;
   }
 

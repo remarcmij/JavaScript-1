@@ -1,20 +1,20 @@
 (function () {
-    const state = {
-        board: [
-            ['T', 'T', '.', 'F'],
-            ['T', '.', '.', '.'],
-            ['.', '.', '.', '.'],
-            ['R', '.', '.', 'W']
-        ],
-        robot: {
-            x: 0,
-            y: 0,
-            dir: 'up',
-        },
-        flagReached: false,
-        moves: 0,
-        lastCommand: ''
-    };
+const state = {
+    board: [
+        ['T', 'T', '.', 'F'],
+        ['T', '.', '.', '.'],
+        ['.', '.', '.', '.'],
+        ['R', '.', '.', 'W']
+    ],
+    robot: {
+        x: 0,
+        y: 0,
+        dir: 'up',
+    },
+    flagReached: false,
+    moves: 0,
+    lastCommand: ''
+};
 
     const trailIndicators = {
         left: '←',
@@ -83,45 +83,45 @@
         renderInput(target);
     }
 
-    function move() {
-        let x = state.robot.x;
-        let y = state.robot.y;
-        let dir = state.robot.dir;
+function move() {
+    let x = state.robot.x;
+    let y = state.robot.y;
+    const dir = state.robot.dir;
 
-        switch (dir) {
-            case 'up':
-                y = (y < state.board.length - 1) ? y + 1 : y;
-                break;
-            case 'down':
-                y = (y > 0) ? y - 1 : 0;
-                break;
-            case 'left':
-                x = (x > 0) ? x - 1 : 0;
-                break;
-            case 'right':
-                x = (x < state.board[y].length - 1) ? x + 1 : x;
-                break;
-            default:
-                console.log('Huh?', dir);
-        }
-
-        const targetContents = state.board[y][x];
-        if (targetContents === '.' || targetContents === 'F') {
-            state.board[state.robot.y][state.robot.x] = trailIndicators[state.robot.dir];
-            state.robot.x = x;
-            state.robot.y = y;
-            state.board[y][x] = 'R';
-            if (targetContents === 'F') {
-                state.flagReached = true;
-            }
-        } else {
-            console.log('Bumped into', targetContents);
-        }
-
-        state.moves += 1;
-
-        render();
+    switch (dir) {
+        case 'up':
+            y = (y < state.board.length - 1) ? y + 1 : y;
+            break;
+        case 'down':
+            y = (y > 0) ? y - 1 : 0;
+            break;
+        case 'left':
+            x = (x > 0) ? x - 1 : 0;
+            break;
+        case 'right':
+            x = (x < state.board[y].length - 1) ? x + 1 : x;
+            break;
+        default:
+            console.log('Huh?', dir);
     }
+
+    const targetContents = state.board[y][x];
+    if (targetContents === '.' || targetContents === 'F') {
+        state.board[state.robot.y][state.robot.x] = trailIndicators[state.robot.dir];
+        state.robot.x = x;
+        state.robot.y = y;
+        state.board[y][x] = 'R';
+        if (targetContents === 'F') {
+            state.flagReached = true;
+        }
+    } else {
+        console.log('Bumped into', targetContents);
+    }
+
+    state.moves += 1;
+
+    render();
+}
 
     function turn(turnDirection) {
         if (turnDirection !== 'left' && turnDirection !== 'right') {
@@ -159,7 +159,7 @@
                 break;
             default:
                 console.log('unknown robot direction:', state.robot.dir);
-        }    
+        }
 
     }
 
@@ -175,7 +175,7 @@
                 turn('right');
                 break;
             default:
-                console.log('ignoring invalid command:', command)    
+                console.log('ignoring invalid command:', command)
         }
     }
 

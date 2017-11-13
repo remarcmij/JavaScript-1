@@ -19,7 +19,7 @@
 
   function render() {
     const target = document.getElementById('target');
-    // target.innerHTML = '';
+    target.innerHTML = '';
     const table = document.createElement('table');
     target.appendChild(table);
     for (let row = state.board.length - 1; row >= 0; row--) {
