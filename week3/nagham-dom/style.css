@@ -1,0 +1,23 @@
+body {
+  text-align: center;
+  background-color: rgb(155, 143, 143);
+}
+
+img {
+  width: 290px;
+  height: 220px;
+  margin: 2%;
+}
+
+h1 {
+  text-align: center;
+  color: rgb(56, 2, 2);
+}
+
+li {
+  display: inline-block;
+  list-style: none;
+  border: solid rgb(56, 2, 2);
+  margin-left: 30px;
+  margin: 1%;
+}
