@@ -1,6 +1,15 @@
-# Class 12 - JavaScript Week 3
+# JavaScript Week 3
 
 > Don't forget to start a recording!
+
+## Lecture goals
+
+- Advanced data types [Objects]
+- Conditions
+- Statements vs Expressions
+- Loops (for/while)
+- Functions
+- Scope
 
 ## Homework
 

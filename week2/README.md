@@ -1,4 +1,14 @@
-# Class 12 - JavaScript Week 2
+# JavaScript Week 2
+
+> Don't forget to start a recording!
+
+## Lecture goals
+
+- Intro JavaScript (What is it, where can you use it for)
+- Variables [var, let, const]
+- Basic Data types [Strings, Numbers, Arrays, Booleans]
+- Operators
+- Naming conventions
 
 ## Coding Examples
 
