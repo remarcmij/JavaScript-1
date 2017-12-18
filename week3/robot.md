@@ -2,12 +2,13 @@
 
 ## Robot state
 
-In the robot code the whole state of the game is kept in a single JavaScript object. It contains:
+In the robot code the state of the game is kept in a number of variables at the file level.
+The state consist of:
 
-- a two-dimensional array representing the board,
-- the `x`, `y` and `dir` (= direction) of the robot,
-- whether the flag has been reached,
-- and the number of moves made so far.
+- `board`: a two-dimensional array representing the board,
+- `robot`: the `x`, `y` and `dir` (= direction) of the robot,
+- `flagReached`: whether the flag has been reached,
+- `moves`: and the number of moves made so far.
 
 This state is updated as the robot moves and turns.
 
