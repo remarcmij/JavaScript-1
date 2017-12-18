@@ -1,22 +1,23 @@
 (function () {
-  const state = {
-    board: [
-      ['T', 'T', '.', 'F'],
-      ['T', '.', '.', '.'],
-      ['.', '.', '.', '.'],
-      ['R', '.', '.', 'W']
-    ],
-    robot: {
-      x: 0,
-      y: 0,
-      dir: 'up',
-    },
-    flagReached: false,
-    moves: 0,
-    lastCommand: ''
+  'use strict';
+
+  const board = [
+    ['T', 'T', '.', 'F'],
+    ['T', '.', '.', '.'],
+    ['.', '.', '.', '.'],
+    ['R', '.', '.', 'W']
+  ];
+
+  const robot = {
+    x: 0,
+    y: 0,
+    dir: 'up',
   };
 
-  state.board.reverse();
+  let flagReached = false;
+  let lastCommand = '';
+
+  board.reverse();
 
   const imageMap = {
     T: '<img src="img/tree.png"',
@@ -40,7 +41,7 @@
     div.appendChild(input);
     input.setAttribute('id', 'command');
     input.setAttribute('type', 'text');
-    input.setAttribute('value', state.lastCommand);
+    input.setAttribute('value', lastCommand);
     input.focus();
 
     const button = document.createElement('button');
@@ -48,7 +49,7 @@
     const label = document.createTextNode('Execute');
     button.appendChild(label);
     button.addEventListener('click', function () {
-      state.lastCommand = input.value;
+      lastCommand = input.value;
       executeCommand();
     });
   }
@@ -56,8 +57,8 @@
   function renderBoard(target) {
     const table = document.createElement('table');
     target.appendChild(table);
-    for (let row = state.board.length - 1; row >= 0; row--) {
-      const cells = state.board[row];
+    for (let row = board.length - 1; row >= 0; row--) {
+      const cells = board[row];
       const tr = document.createElement('tr');
       table.appendChild(tr);
       let rowHtml = '';
@@ -65,8 +66,8 @@
         const cell = cells[col];
         const img = imageMap[cell] || '';
         if (cell === 'R') {
-          let classString = state.robot.dir;
-          if (state.flagReached) {
+          let classString = robot.dir;
+          if (flagReached) {
             classString += ' at-flag';
           }
           rowHtml += `<td class="${classString}">${img}</td>`;
@@ -79,7 +80,7 @@
   }
 
   function executeCommand() {
-    switch (state.lastCommand) {
+    switch (lastCommand) {
       case 'move':
         move();
         break;
@@ -90,18 +91,18 @@
         turn('right');
         break;
       default:
-        console.log('ignoring command:', state.lastCommand);
+        console.log('ignoring command:', lastCommand);
     }
     render();
   }
 
   function move() {
-    let x = state.robot.x;
-    let y = state.robot.y;
+    let x = robot.x;
+    let y = robot.y;
 
-    switch (state.robot.dir) {
+    switch (robot.dir) {
       case 'up':
-        y = y < state.board.length - 1 ? y + 1 : y;
+        y = y < board.length - 1 ? y + 1 : y;
         break;
       case 'down':
         y = y > 0 ? y - 1 : y;
@@ -110,23 +111,23 @@
         x = x > 0 ? x - 1 : x;
         break;
       case 'right':
-        x = x < state.board[0].length - 1 ? x + 1 : x;
+        x = x < board[0].length - 1 ? x + 1 : x;
         break;
     }
 
-    const cellContents = state.board[y][x];
+    const cellContents = board[y][x];
 
     if (cellContents === '.' || cellContents === 'F') {
-      state.board[state.robot.y][state.robot.x] = '';
-      state.robot.x = x;
-      state.robot.y = y;
-      state.board[y][x] = 'R';
+      board[robot.y][robot.x] = '';
+      robot.x = x;
+      robot.y = y;
+      board[y][x] = 'R';
       if (cellContents === 'F') {
-        state.flagReached = true;
+        flagReached = true;
       }
     }
 
-    state.moves += 1;
+    moves += 1;
     render();
   }
 
@@ -135,18 +136,18 @@
       console.log('ignoring invalid turn', turnDirection);
       return;
     }
-    switch (state.robot.dir) {
+    switch (robot.dir) {
       case 'up':
-        state.robot.dir = turnDirection === 'left' ? 'left' : 'right';
+        robot.dir = turnDirection === 'left' ? 'left' : 'right';
         break;
       case 'down':
-        state.robot.dir = turnDirection === 'left' ? 'right' : 'left';
+        robot.dir = turnDirection === 'left' ? 'right' : 'left';
         break;
       case 'left':
-        state.robot.dir = turnDirection === 'left' ? 'down' : 'up';
+        robot.dir = turnDirection === 'left' ? 'down' : 'up';
         break;
       case 'right':
-        state.robot.dir = turnDirection === 'left' ? 'up' : 'down';
+        robot.dir = turnDirection === 'left' ? 'up' : 'down';
         break;
     }
   }
@@ -154,7 +155,7 @@
   function autoPlay(commands, delay = 1000) {
     const commandQueue = [...commands];
     const intervalID = setInterval(function () {
-      state.lastCommand = commandQueue.shift();
+      lastCommand = commandQueue.shift();
       executeCommand();
       if (commandQueue.length === 0) {
         clearInterval(intervalID);

@@ -1,29 +1,22 @@
 (function () {
-  const state = {
-    board: [
-      ['T', 'T', '.', 'F'],
-      ['T', '.', '.', '.'],
-      ['.', '.', '.', '.'],
-      ['R', '.', '.', 'W']
-    ],
-    robot: {
-      x: 0,
-      y: 0,
-      dir: 'up',
-    },
-    flagReached: false,
-    moves: 0
-  };
+  'use strict';
 
-  state.board.reverse();
+  const board = [
+    ['T', 'T', '.', 'F'],
+    ['T', '.', '.', '.'],
+    ['.', '.', '.', '.'],
+    ['R', '.', '.', 'W']
+  ];
+
+  board.reverse();
 
   function render() {
     const target = document.getElementById('target');
     target.innerHTML = '';
     const table = document.createElement('table');
     target.appendChild(table);
-    for (let row = state.board.length - 1; row >= 0; row--) {
-      const cells = state.board[row];
+    for (let row = board.length - 1; row >= 0; row--) {
+      const cells = board[row];
       const tr = document.createElement('tr');
       table.appendChild(tr);
       let rowHtml = '';

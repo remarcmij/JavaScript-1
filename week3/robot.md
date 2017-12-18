@@ -12,26 +12,26 @@ In the robot code the whole state of the game is kept in a single JavaScript obj
 This state is updated as the robot moves and turns.
 
 ```js
-const state = {
-    board: [
-        ['T', 'T', '.', 'F'],
-        ['T', '.', '.', '.'],
-        ['.', '.', '.', '.'],
-        ['R', '.', '.', 'W']
-    ],
-    robot: {
-        x: 0,
-        y: 0,
-        dir: 'up',
-    },
-    flagReached: false,
-    moves: 0
+const board = [
+  ['T', 'T', '.', 'F'],
+  ['T', '.', '.', '.'],
+  ['.', '.', '.', '.'],
+  ['R', '.', '.', 'W']
+];
+
+const robot = {
+  x: 0,
+  y: 0,
+  dir: 'up',
 };
+
+let flagReached = false;
+let moves = 0;
 ```
 
 ## Turning the robot
 
-The robot can turn `left` and `right`. The new direction of the robot (indicated by the 'antenna' on its head) depends on its current direction (`up`, `down`, `left`, `right`) and the turn direction. This is illustrated in the picture below. 
+The robot can turn `left` and `right`. The new direction of the robot (indicated by the 'antenna' on its head) depends on its current direction (`up`, `down`, `left`, `right`) and the turn direction. This is illustrated in the picture below.
 
 ![Turning the robot](assets/robot-turn.png)
 
@@ -43,18 +43,18 @@ function turn(turnDirection) {
     console.log('ignoring invalid turn', turnDirection);
     return;
   }
-  switch (state.robot.dir) {
+  switch (robot.dir) {
     case 'up':
-      state.robot.dir = turnDirection === 'left' ? 'left' : 'right';
+      robot.dir = turnDirection === 'left' ? 'left' : 'right';
       break;
     case 'down':
-      state.robot.dir = turnDirection === 'left' ? 'right' : 'left';
+      robot.dir = turnDirection === 'left' ? 'right' : 'left';
       break;
     case 'left':
-      state.robot.dir = turnDirection === 'left' ? 'down' : 'up';
+      robot.dir = turnDirection === 'left' ? 'down' : 'up';
       break;
     case 'right':
-      state.robot.dir = turnDirection === 'left' ? 'up' : 'down';
+      robot.dir = turnDirection === 'left' ? 'up' : 'down';
       break;
   }
 }
@@ -62,7 +62,7 @@ function turn(turnDirection) {
 
 The conditional operator is a convenient short-hand for the alternative of using `if` statements, as we did in class. Its syntax is:
 
-> _condition_ ? _expr1_ : _expr2_ 
+> _condition_ ? _expr1_ : _expr2_
 
 If the condition is `true` the resulting value is `expr1`, otherwise it's `expr2`.
 
@@ -72,16 +72,16 @@ In the code snippet above we are testing whether `turnDirection === 'left'` in t
 
 ## Moving the robot
 
-Moving the robot means adding or subtracting `1` from either its `y` (vertical) position or its `x` (horizontal) position, depending on the current direction of the robot. As a complicating factor, we also must ensure that the robot doesn't 'fall off the board'. In the code snippet below we again use conditional operators to ensure the `x` and `y` values stay within the range of the `state.board` array.
+Moving the robot means adding or subtracting `1` from either its `y` (vertical) position or its `x` (horizontal) position, depending on the current direction of the robot. As a complicating factor, we also must ensure that the robot doesn't 'fall off the board'. In the code snippet below we again use conditional operators to ensure the `x` and `y` values stay within the range of the `board` array.
 
 ```js
 function move() {
-  let x = state.robot.x;
-  let y = state.robot.y;
+  let x = robot.x;
+  let y = robot.y;
 
-  switch (state.robot.dir) {
+  switch (robot.dir) {
     case 'up':
-      y = y < state.board.length - 1 ? y + 1 : y;
+      y = y < board.length - 1 ? y + 1 : y;
       break;
     case 'down':
       y = y > 0 ? y - 1 : y;
@@ -90,7 +90,7 @@ function move() {
       x = x > 0 ? x - 1 : x;
       break;
     case 'right':
-      x = x < state.board[y].length - 1 ? x + 1 : x;
+      x = x < board[y].length - 1 ? x + 1 : x;
       break;
   }
   ...
@@ -103,13 +103,13 @@ The flag is not considered an obstacle but when it is reached we set the `flagRe
 
 ```js
 function move() {
-    let x = state.robot.x;
-    let y = state.robot.y;
-    const dir = state.robot.dir;
+    let x = robot.x;
+    let y = robot.y;
+    const dir = robot.dir;
 
     switch (dir) {
         case 'up':
-            y = (y < state.board.length - 1) ? y + 1 : y;
+            y = (y < board.length - 1) ? y + 1 : y;
             break;
         case 'down':
             y = (y > 0) ? y - 1 : 0;
@@ -118,26 +118,26 @@ function move() {
             x = (x > 0) ? x - 1 : 0;
             break;
         case 'right':
-            x = (x < state.board[y].length - 1) ? x + 1 : x;
+            x = (x < board[y].length - 1) ? x + 1 : x;
             break;
         default:
             console.log('Huh?', dir);
     }
 
-    const targetContents = state.board[y][x];
+    const targetContents = board[y][x];
     if (targetContents === '.' || targetContents === 'F') {
-        state.board[state.robot.y][state.robot.x] = trailIndicators[state.robot.dir];
-        state.robot.x = x;
-        state.robot.y = y;
-        state.board[y][x] = 'R';
+        board[robot.y][robot.x] = trailIndicators[robot.dir];
+        robot.x = x;
+        robot.y = y;
+        board[y][x] = 'R';
         if (targetContents === 'F') {
-            state.flagReached = true;
+            flagReached = true;
         }
     } else {
         console.log('Bumped into', targetContents);
     }
 
-    state.moves += 1;
+    moves += 1;
 
     render();
 }
@@ -202,8 +202,8 @@ function render() {
   target.innerHTML = '';
   const table = document.createElement('table');
   target.appendChild(table);
-  for (let row = state.board.length - 1; row >= 0; row--) {
-    const cells = state.board[row];
+  for (let row = board.length - 1; row >= 0; row--) {
+    const cells = board[row];
     const tr = document.createElement('tr');
     table.appendChild(tr);
     let rowHtml = '';

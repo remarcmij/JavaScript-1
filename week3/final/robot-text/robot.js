@@ -14,6 +14,11 @@
     dir: 'up',
   };
 
+  let flagReached = false;
+  let moves = 0;
+
+  board.reverse();
+
   const trailIndicators = {
     left: '←',
     right: '→',
@@ -22,23 +27,19 @@
   };
 
   function render() {
-    const target = document.getElementById('target');
-    target.innerHTML = '';
-    const table = document.createElement('table');
-    target.appendChild(table);
+    console.log('\n ' + moves + ':');
     for (let row = board.length - 1; row >= 0; row--) {
       const cells = board[row];
-      const tr = document.createElement('tr');
-      table.appendChild(tr);
-      let rowHtml = '';
+      let line = '';
       for (let col = 0; col < cells.length; col++) {
-        const cell = cells[col] === '.' ? '' : cells[col];
-        rowHtml += `<td>${cell}</td>`;
+        line += ' ' + cells[col] + ' ';
       }
-      tr.innerHTML = rowHtml;
+      console.log(line);
+    }
+    if (flagReached) {
+      console.log('\nHurray! Flag reached in ' + moves + ' steps!');
     }
   }
-
 
   function move() {
     let x = robot.x;
@@ -55,7 +56,7 @@
         x = x > 0 ? x - 1 : x;
         break;
       case 'right':
-        x = x < board[0].length - 1 ? x + 1 : x;
+        x = x < board[y].length - 1 ? x + 1 : x;
         break;
     }
 
@@ -78,7 +79,6 @@
   function turn(turnDirection) {
     if (turnDirection !== 'left' && turnDirection !== 'right') {
       console.log('ignoring invalid turn', turnDirection);
-      return;
     }
     switch (robot.dir) {
       case 'up':
@@ -96,7 +96,6 @@
     }
   }
 
-  board.reverse();
   render();
 
   move();
@@ -107,4 +106,5 @@
   turn('left');
   move();
   move();
+
 })();
