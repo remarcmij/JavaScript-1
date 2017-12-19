@@ -8,7 +8,7 @@ The state consist of:
 - `board`: a two-dimensional array representing the board,
 - `robot`: the `x`, `y` and `dir` (= direction) of the robot,
 - `flagReached`: whether the flag has been reached,
-- `moves`: and the number of moves made so far.
+- `moves`: the number of moves made so far.
 
 This state is updated as the robot moves and turns.
 
