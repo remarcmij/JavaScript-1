@@ -1,4 +1,6 @@
 (function () {
+  'use strict';
+
   const state = {
     board: [
       ['T', 'T', '.', 'F'],

@@ -1,3 +1,4 @@
+'use strict';
 const monthDays = [
   31, // January
   28, // February

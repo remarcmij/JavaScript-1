@@ -105,12 +105,8 @@
       robot.x = x;
       robot.y = y;
       board[y][x] = 'R';
-      if (cellContents === 'F') {
-        flagReached = true;
-      }
     }
 
-    moves += 1;
     render();
   }
 

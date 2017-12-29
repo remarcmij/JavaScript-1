@@ -1,3 +1,4 @@
+'use strict';
 const monthDays = [
   31, // January
   28, // February
@@ -15,4 +16,3 @@ const monthDays = [
 
 // Make sure that the number of days of the 12 months
 // add up to 365.
-

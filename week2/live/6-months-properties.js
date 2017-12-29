@@ -1,3 +1,4 @@
+'use strict';
 const months = [
   { name: { en: 'January', nl: 'januari' }, days: 31 },
   { name: { en: 'February', nl: 'februari' }, days: 28 },

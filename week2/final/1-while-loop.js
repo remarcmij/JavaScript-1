@@ -1,3 +1,4 @@
+'use strict';
 console.log('BEFORE loop');
 
 let index = 0;

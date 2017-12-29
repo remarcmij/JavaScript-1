@@ -1,4 +1,6 @@
-(function() {
+(function () {
+  'use strict';
+
   const board = [
     ['T', 'T', '.', 'F'],
     ['T', '.', '.', '.'],
