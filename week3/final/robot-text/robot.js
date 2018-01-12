@@ -2,25 +2,19 @@
   'use strict';
 
   const board = [
-    ['A', '.', '.', '.','.'],
+    ['.', '.', '.', '.','.'],
     ['.', '.', '.', '.','.'],
     ['R', '.', '.', '.','F'],
-    ['.', 'A', 'A', 'A','.']
- 
+    ['.', 'A', 'A', 'A','.'],
+    ['.', '.', '.', '.','.']
   ];
-console.log(board[2][0]);
-
-
   const robot = {
     x: 0,
-    y: 1,
+    y: 2,
     dir: 'down',
   };
-
-
   let flagReached = false;
   let moves = 0;
-
   let appleEaten = false;
   let applesEatenNum = 0;
 
@@ -111,14 +105,14 @@ console.log(board[2][0]);
         break;
     }
   }
-
   render();
-move();
-turn('left')
-move();
-move();
-move();
-move();  
-turn('left');
-move();   
-}));
+  move();
+  turn('left');
+  move();
+  move();
+  move();
+  move();  
+  turn('left');
+  move();   
+
+}()));
