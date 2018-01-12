@@ -2,19 +2,23 @@
   'use strict';
 
   const board = [
-    ['T', 'T', '.', 'F'],
-    ['T', '.', '.', '.'],
-    ['.', '.', '.', '.'],
-    ['R', '.', '.', 'W']
+    ['.', '.', '.', '.','.'],
+    ['.', '.', '.', '.','.'],
+    ['R', '.', '.', '.','F'],
+    ['.', 'A', 'A', 'A','.'],
+    ['.', '.', '.', '.','.']
   ];
 
   const robot = {
     x: 0,
-    y: 0,
-    dir: 'up',
+    y: 2,
+    dir: 'right',
   };
 
   let flagReached = false;
+  let appleEaten = false;
+  let applesEaten = 0;
+
   let moves = 0;
 
   board.reverse();
@@ -36,8 +40,9 @@
       }
       console.log(line);
     }
+    if (appleEaten) { console.log('YUM!');}
     if (flagReached) {
-      console.log('\nHurray! Flag reached in ' + moves + ' steps!');
+      console.log('\nHurray! Flag reached in ' + moves + ' steps!' + "I ate " + applesEaten +" apples");
     }
   }
 
@@ -62,11 +67,14 @@
 
     const cellContents = board[y][x];
 
-    if (cellContents === '.' || cellContents === 'F') {
+    if (cellContents === '.' || cellContents === 'A' || cellContents === 'F') {
       board[robot.y][robot.x] = trailIndicators[robot.dir];
       robot.x = x;
       robot.y = y;
       board[y][x] = 'R';
+      if (cellContents === 'A') {
+        appleEaten = true;
+         applesEaten ++;}
       if (cellContents === 'F') {
         flagReached = true;
       }
@@ -98,13 +106,15 @@
 
   render();
 
-  move();
+  
   turn('right');
+  move();
+  turn("left");
+  move();
   move();
   move();
   move();
   turn('left');
-  move();
   move();
 
 })();
