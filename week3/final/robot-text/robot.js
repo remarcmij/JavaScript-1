@@ -16,8 +16,8 @@
     };
 
     let flagReached = false;
-    let appleeaten = false;
-    let appleseaten = 0;
+    let appleEaten = false;
+    let applesEaten = 0;
     let moves = 0;
 
     board.reverse();
@@ -39,17 +39,22 @@
             }
             console.log(line);
         }
-        if (appleeaten) { console.log('\nYUM!');}
+       if (appleEaten) {
+           console.log('\nYUM!');
+       }
+      
         if (flagReached) {
             console.log('\nHurray! Flag reached in ' + moves + ' steps!');
-            console.log('\n'+ appleseaten + 'apples are eaten!');
+            console.log('\n'+ applesEaten + 'apples are eaten!');
+       
         }
     }
+     
 
     function move() {
         let x = robot.x;
         let y = robot.y;
-        appleeaten = false;
+        appleEaten = false;
 
 
         switch (robot.dir) {
@@ -76,15 +81,17 @@
             board[y][x] = 'R';
             if (cellContents === 'F') {
                 flagReached = true;
-                
             }
-            if (cellContents === 'A') {
-                appleseaten += 1;
-            }
-            if (appleseaten == 3) { appleeaten = true; }
-        }
 
-       moves += 1;
+            if (cellContents === 'A') {
+                applesEaten++;
+            
+            if (applesEaten === 3) {
+                appleEaten = true;
+            }
+        }
+        }
+        moves += 1;
         render();
     }
 
@@ -107,6 +114,7 @@
                 break;
         }
     }
+    
 
     render();
 
