@@ -42,13 +42,15 @@
     if (flagReached) {
       console.log('\nHurray! Flag reached in ' + moves + ' steps!');
     }
+    if (applesEaten) {
+      console.log("Number of apples eaten: " + applesEaten);
+    }
   }
 
   function move() {
     let x = robot.x;
     let y = robot.y;
     let appleEaten = false;
-    let applesEaten = 0;
 
     switch (robot.dir) {
       case 'up':
