@@ -2,11 +2,11 @@
 
 console.log('BEFORE loop');
 
-let index = 0;
+let i = 0;
 
-while (index < 5) {
-  console.log('INSIDE loop', index);
-  index = index + 1;
+while (i < 5) {
+  console.log('INSIDE loop', i);
+  i = i + 1;
 }
 
 console.log('AFTER loop');

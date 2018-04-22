@@ -2,8 +2,8 @@
 
 console.log('BEFORE loop');
 
-for (let index = 0; index < 5; index = index + 1) {
-  console.log('INSIDE loop', index);
+for (let i = 0; i < 5; i = i + 1) {
+  console.log('INSIDE loop', i);
 }
 
 console.log('AFTER loop');
