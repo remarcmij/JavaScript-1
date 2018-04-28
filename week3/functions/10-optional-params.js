@@ -9,4 +9,4 @@ function fullName(firstName, lastName) {
 }
 
 console.log(fullName('Maartje', 'Kruijt'));
-console.log('Sukarno');
+console.log(fullName('Sukarno'));

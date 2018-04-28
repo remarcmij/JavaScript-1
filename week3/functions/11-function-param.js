@@ -10,7 +10,7 @@ function writeToLog(message) {
 }
 
 function writeAllCapsToLog(message) {
-  writeToLog(message.toUpperCase());
+  console.log(message.toUpperCase());
 }
 
 reportTime(writeToLog);

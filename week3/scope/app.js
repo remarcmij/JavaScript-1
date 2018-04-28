@@ -1,6 +1,8 @@
 'use strict';
 // {
 function sayHello(firstName, lastName) {
+  // let firstName = ...
+  // let lastName = ...
   const hello = 'Bonjour';
   console.log(hello + ' ' + firstName + ' ' + lastName);
 }

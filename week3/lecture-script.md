@@ -14,8 +14,10 @@ Work:
 - [IBM card punch](https://commons.wikimedia.org/wiki/File:IBM_card_punch_029.JPG)
 - [Wikipedia: Computer programming in the punched card era](https://en.wikipedia.org/wiki/Computer_programming_in_the_punched_card_era)
 - [FORTRAN listing](http://4.bp.blogspot.com/-59fHNDXj3sk/UsDu4ot3GNI/AAAAAAAAEN0/mZHfqfKuegY/s1600/fortran_printout.jpg)
+- [IBM 370 Mainframe](https://commons.wikimedia.org/wiki/File:IBM_370-145_2.png#/media/File:IBM_370-145_2.png)
 
 Hobby:
+
 - [Jim's first scientific calculator](https://en.wikipedia.org/wiki/HP-35)
 - [Jim's first computer](https://youtu.be/kSOCInQmZK8)
 - [Wikipedia: SYM-1](https://en.wikipedia.org/wiki/SYM-1)
@@ -35,7 +37,7 @@ const person = {
 console.log(person); // --> { firstName: 'Maartje', lastName: 'Kruijt' }
 ```
 
-You can construct an object by adding properties to an (potentially empty) object:
+You can construct an object by adding properties to a (potentially empty) object:
 
 ```js
 // 2-add-properties.js
@@ -47,7 +49,7 @@ person.lastName = 'Kruijt';
 console.log(person); // --> { firstName: 'Maartje', lastName: 'Kruijt' }
 ```
 
-You can construct an object through a **constructor** function, in combination with the keyword `new`. _We will discuss this in detail in later JavaScript modules, but for now just be aware of this possibility as you may come across in books and on the Internet._
+You can construct an object through a **constructor** function, in combination with the keyword `new`. _We will discuss this in detail in later JavaScript modules, but for now just be aware of this possibility as you may come across it in books and on the Internet._
 
 ```js
 // 3-object-new.js
@@ -64,11 +66,13 @@ console.log(person); // --> Person { firstName: 'Maartje', lastName: 'Kruijt' }
 
 ## Functions
 
-Functions are the core components of JavaScript. Having a thorough understanding of functions is essential to be successful as a JavaScript developer.
+Functions are _everywhere_ in JavaScript. A thorough understanding of functions is essential to becoming successful as a JavaScript developer.
 
 ### Function expressions vs function statements
 
-Function **expression**:
+Functions can be defined in two ways:
+
+**1.** Assigning a **function expression** to a variable:
 
 ```js
 // 1-square.js
@@ -80,7 +84,7 @@ const square = function (num) {
 console.log(square(5)); // --> 25
 ```
 
-Function **statement**:
+**2.** Directly, using a **function statement**:
 
 ```js
 // 2-square.js
@@ -116,26 +120,26 @@ raise (something) by means of ropes and pulleys: _a white flag was hoisted._
 
 ### Function arguments and return values
 
-Function `square()` **takes** a number and **returns** its square.
+The function `square()` from above takes a number (5) as its **_argument_** and returns the mathematical square (25) as its **_return value_**.
 
 ![pure function](./assets/pure_function.png)
 
 ### Pure functions
 
-Function `square()` is a **pure function**: a pure function always returns the same result when given the same parameters and has no **side effects**.
+The function `square()` is said to be a **_pure function_**: a pure function always returns the same result when given the same parameters and does not cause any **_side effects_** (see later).
 
 ### Impure functions
 
-Function `pickNumberBetweenZeroAnd()` and `square()` below are not a pure functions; they are impure because the result of both functions is not solely dependent on the function's argument(s). There are no side-effects, though.
+The functions `pickSomeNumberBetweenZeroAnd()` and `square()` below are not pure functions; they are impure because the result of both functions is not solely dependent on the function's argument(s). However, they cause no side-effects.
 
 ```js
 // 4-impure.js
 
-function pickNumberBetweenZeroAnd(num) {
+function pickSomeNumberBetweenZeroAnd(num) {
   return Math.floor(Math.random() * num);
 }
 
-console.log(pickNumberBetweenZeroAnd(25)); // --> ??
+console.log(pickSomeNumberBetweenZeroAnd(25)); // --> ??
 ```
 
 ```js
@@ -152,7 +156,9 @@ console.log(square()); // --> 25
 ```
 ### Side effects
 
-Functions that do not return a value are meant to cause side effects. Function `reportTime()` below has the intended side-effect of printing the current time on the console.
+Functions that do not return a value are meant to cause **_side effects_**. (A function that does not return a value and does not cause any side effects has no impact at all on its environment and is therefore utterly useless.)
+
+Function `reportTime()` below has the intended side effect of printing the current time on the console.
 
 ```js
 // 6-side-effects.js
@@ -174,18 +180,19 @@ const returnValue = reportTime('The current time is: ');
 console.log(returnValue); // --> undefined
 ```
 
-Some examples of **desired** side effects:
+Some examples of **desired** side effects are:
 
 - Reading from, and writing to a file.
 - Making database queries.
+- Rendering information to a web page.
 - Making network requests to fetch or post information.
 - Retrieving GPS coordinates from GPS hardware.
-- Controlling the positioning of moving parts of a robot.
+- Controlling the movement of a robot.
 - etc.
 
 #### Side effects to be avoided
 
-Function `square` below assigns its result to an external variable, rather then returning it. This is a side effect and is to be avoided. A pure function implementation should always be preferred over one that uses avoidable side effects.
+The function `square` below assigns its result to an external variable, rather then returning it. This is a side effect and is to be avoided. A pure function implementation should always be preferred over one that uses avoidable side effects.
 
 ```js
 // 7-side-effects.js
@@ -234,7 +241,7 @@ console.log(divide(3, 6)); // --> 0.5
 
 ### Optional parameters
 
-When calling a function with fewer arguments that listed in the function definition those arguments will take the value `undefined`. If this function designed to allow for this situation then we say that the function accepts optional parameters. These optional parameters must always come after any required parameters.
+When calling a function with fewer arguments than listed in the function definition those arguments will take the value `undefined`. If a function is designed to allow for this situation then we say that the function accepts optional parameters. These optional parameters must always come after any required parameters.
 
 ```js
 // 10-optional-params.js
@@ -248,12 +255,12 @@ function fullName(firstName, lastName) {
 }
 
 console.log(fullName('Maartje', 'Kruijt')); // --> Maartje Kruijt
-console.log('Sukarno');                     // --> Sukarno
+console.log(fullName('Sukarno'));           // --> Sukarno
 ```
 
 ### Functions as arguments
 
-The values supplied as arguments to functions can be any type of expression, including function expressions.
+The values supplied as arguments to functions can be any type of expression, including function expressions. In the example below, we supply two different versions of a 'reporter' function to `reportTime()`. This function does not need to know how the 'reporting' is done.
 
 ```js
 // 11-function-params.js
@@ -268,7 +275,7 @@ function writeToLog(message) {
 }
 
 function writeAllCapsToLog(message) {
-  writeToLog(message.toUpperCase());
+  console.log(message.toUpperCase());
 }
 
 reportTime(writeToLog);        // --> 'The current time is: 14:14:08'
@@ -296,7 +303,7 @@ reportTime(function writeToLog(message) {
 });
 ```
 
-Since we are no longer referencing the `writeToLog` function by name, we can leave out the name. The passed function is now an **anonymous** function (literally, a function without a name):
+Since we are no longer referencing the `writeToLog()` function by name, we can leave out the name. The passed function is now an **anonymous** function (literally, a function without a name):
 
 ```js
 // 13-anonymous-function-param.js
@@ -326,7 +333,7 @@ reportTime(console.log); // --> 'The current time is: 14:14:08'
 
 ### Returning a function
 
-The return value of a function can be any expression, including a function expression. This is often done to take advantage of **_closures_**. Closures will be covered in a later JavaScript module. Here is an example.
+The return value of a function can be any expression, including a function expression. This is often done to take advantage of **_closures_**. Closures will be covered in a later JavaScript module. But here is an example.
 
 ```js
 // 15-returned-function.js

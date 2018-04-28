@@ -1,7 +1,7 @@
 'use strict';
 
-function pickNumberBetweenZeroAnd(num) {
+function pickSomeNumberBetweenZeroAnd(num) {
   return Math.floor(Math.random() * num);
 }
 
-console.log(pickNumberBetweenZeroAnd(25));
+console.log(pickSomeNumberBetweenZeroAnd(25));
