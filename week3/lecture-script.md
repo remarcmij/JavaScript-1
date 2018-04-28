@@ -15,6 +15,7 @@ Work:
 - [Wikipedia: Computer programming in the punched card era](https://en.wikipedia.org/wiki/Computer_programming_in_the_punched_card_era)
 - [FORTRAN listing](http://4.bp.blogspot.com/-59fHNDXj3sk/UsDu4ot3GNI/AAAAAAAAEN0/mZHfqfKuegY/s1600/fortran_printout.jpg)
 - [IBM 370 Mainframe](https://commons.wikimedia.org/wiki/File:IBM_370-145_2.png#/media/File:IBM_370-145_2.png)
+- [At Shell Laboratory, Amsterdam 1982](https://photos.app.goo.gl/kEbFfkW5LhW1iV2D7)
 
 Hobby:
 
