@@ -1,7 +1,5 @@
 # JS1 Week 3
 
-**_Start a recording!_**
-
 ## Review Homework
 
 - Check VSCode settings
@@ -23,7 +21,7 @@ Hobby:
 - [Jim's first computer](https://youtu.be/kSOCInQmZK8)
 - [Wikipedia: SYM-1](https://en.wikipedia.org/wiki/SYM-1)
 
-## Objects
+## Creating Objects
 
 You can define an object by using an **object literal**:
 
