@@ -14,8 +14,10 @@ const myLastName = 'Cramer';
 
 sayHello(myFirstName, myLastName);
 
-var otherFirstName = 'Rohan';
-var otherLastName = 'Nicholls';
+var otherFirstName = 'Daniela';
+var otherLastName = 'Olaru';
 
 sayHello(otherFirstName, otherLastName);
+
+console.log('done');
 // }

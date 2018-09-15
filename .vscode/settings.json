@@ -9,5 +9,6 @@
     "juni",
     "maart",
     "oktober"
-  ]
+  ],
+  "editor.codeLens": false
 }
